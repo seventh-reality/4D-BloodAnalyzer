@@ -3,129 +3,356 @@
   <head>
     <title>Blood Analyzer</title>
     <meta charset="utf-8">
-    <meta name="description" content="&lt;model-viewer&gt; template">
+    <meta name="description" content="Blood Analyzer 3D/AR Model Viewer">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link type="text/css" href="./styles.css" rel="stylesheet"/>
-     <script src="https://cdn.jsdelivr.net/npm/focus-visible@5.0.2/dist/focus-visible.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/focus-visible@5.0.2/dist/focus-visible.js" defer></script>
     <link rel="stylesheet" href="css/font-icons.css" type="text/css" />
-    <link rel="stylesheet" href="css/font-icons.css" type="text/css" />
-	      <style>
-        h5 {
-            text-align: center;
-            margin-top: -5px;
-            font-size: 9px;
-            color: #636363; /* Improves visibility */
-        }
+    <style>
+      h5 {
+          text-align: center;
+          margin-top: -5px;
+          font-size: 9px;
+          color: #636363;
+      }
 
-        .attributiontwo {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 10px 0;
-        }
+      .attributiontwo {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 10px 0;
+      }
 
-        .attributiontwo span {
-            display: flex;
-            flex-wrap: nowrap;
-            justify-content: center;
-        }
+      .attributiontwo span {
+          display: flex;
+          flex-wrap: nowrap;
+          justify-content: center;
+      }
 
-        .attributiontwo a {
-            margin: 15px;
-            text-decoration: none; /* Removes underline */
-           -webkit-tap-highlight-color: transparent; /* Removes blue highlight */
-        }
+      .attributiontwo a {
+          margin: 15px;
+          text-decoration: none;
+          -webkit-tap-highlight-color: transparent;
+      }
 
-        .icon {
-            width: 43px;
-            height: 43px;            
-        }
-        .icon:hover {
-            transform: scale(1.1);         
-        }
+      .icon {
+          width: 43px;
+          height: 43px;            
+      }
+      .icon:hover {
+          transform: scale(1.1);         
+      }
 
-        /* Responsive Design */
-        @media (max-width: 600px) {
-            .attributiontwo {
-                padding: 15px;
-            }
-            .icon {
-                width: 43px;
-                height: 43px;
-            }
-        }
+      @media (max-width: 600px) {
+          .attributiontwo {
+              padding: 15px;
+          }
+          .icon {
+              width: 43px;
+              height: 43px;
+          }
+      }
+      
+      /* AR button styling */
+      #ar-button {
+          background: #fff;
+          border-radius: 4px;
+          border: none;
+          padding: 8px 16px;
+          font-size: 14px;
+          font-weight: 500;
+          color: #4285f4;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.25);
+          position: absolute;
+          bottom: 16px;
+          left: 50%;
+          transform: translateX(-50%);
+          cursor: pointer;
+          z-index: 1;
+      }
+      
+      #ar-button:active {
+          background-color: #e8eaed;
+      }
+      
+      #ar-button:focus {
+          outline: none;
+      }
     </style>
-	<script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "r1gnewah6d");
-</script>  
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RZZ1R1HT10"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-RZZ1R1HT10');
+      
+      // Enhanced measurement for Google Analytics
+      gtag('config', 'G-RZZ1R1HT10', {
+        'page_title': 'Blood Analyzer 3D/AR Viewer',
+        'page_location': location.href,
+        'send_page_view': true
+      });
+    </script>
+    
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+      (function(c,l,a,r,i,t,y){
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "r1gnewah6d");
+    </script>  
   </head>
   <body>
     <div id="card">
-    <!-- <model-viewer> HTML element -->
-    <model-viewer src="bloodana.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls poster="loading.gif"  shadow-intensity="0.88" shadow-softness="1" exposure="1">
-      <div class="progress-bar hide" slot="progress-bar">
-          <div class="update-bar"></div>
-      </div>
-      <button slot="ar-button" id="ar-button">
-        View in 4D
-    </button>
-       <div id="button" style = "display:flex; justify-content: space-between;">
-          <img src="4.png"  align="center" style="width:100px;  padding-left:  0px;padding-top: 0px;"/>
-	  <img src="iitname.png"  style="width:100px;  padding-right: 0px;padding-top: 0px;"/>    
-      </div>
-     
-      <div id="ar-prompt">
-          <img src="ar_hand_prompt.png">
-      </div>
-    </model-viewer> 
-     <section class="attributiontwo">
-       <p style="background-image: url('black.png')" style="width:60px;height:60px; padding-left: 0px;padding-top: 10px;">
+      <model-viewer 
+        id="model-viewer"
+        src="bloodana.glb" 
+        ar 
+        ar-modes="webxr scene-viewer quick-look" 
+        camera-controls 
+        poster="loading.gif"  
+        shadow-intensity="0.88" 
+        shadow-softness="1" 
+        exposure="1"
+        interaction-prompt="none"
+        interaction-policy="allow-when-focused"
+      >
+        <div class="progress-bar hide" slot="progress-bar">
+            <div class="update-bar"></div>
+        </div>
+        <button slot="ar-button" id="ar-button">
+          View in 4D
+        </button>
+        <div id="button" style="display:flex; justify-content: space-between;">
+          <img src="4.png" align="center" style="width:100px; padding-left: 0px; padding-top: 0px;"/>
+          <img src="iitname.png" style="width:100px; padding-right: 0px; padding-top: 0px;"/>    
+        </div>
+        <div id="ar-prompt">
+            <img src="ar_hand_prompt.png">
+        </div>
+      </model-viewer> 
       
-      <span>
-        
-        <a href="https://drive.google.com/file/d/1kpr9csFU_trpcXrLeKH5CQIM5k02qxK6/view?usp=sharing"><img src="Brochure_1.png" class="icon" ></a>
-        <a href="https://youtu.be/feR4lDjrLt8"><img src="Video_1.png" class="icon" ></a>
-        <a href="https://seventh-reality.com/"><img src="web_1.png" class="icon" ></a>
-        <a href="https://forms.gle/nPU6KsDggsqnVopt6"><img src="form_1.png" class="icon" ></a>
-        
-      </span>
-         <style>
-       h5 {
-       text-align: center;
-       margin-top:-5px; 
-       
-       
-       font-size: 9px;
-         }
-          
-   </style>  
-   
-    </section>
-      
-       </div>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-RZZ1R1HT10"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+      <section class="attributiontwo">
+        <p style="background-image: url('black.png')" style="width:60px;height:60px; padding-left: 0px;padding-top: 10px;">
+          <span>
+            <a href="https://drive.google.com/file/d/1kpr9csFU_trpcXrLeKH5CQIM5k02qxK6/view?usp=sharing" class="tracked-link" data-label="Brochure">
+              <img src="Brochure_1.png" class="icon">
+            </a>
+            <a href="https://youtu.be/feR4lDjrLt8" class="tracked-link" data-label="Video">
+              <img src="Video_1.png" class="icon">
+            </a>
+            <a href="https://seventh-reality.com/" class="tracked-link" data-label="Website">
+              <img src="web_1.png" class="icon">
+            </a>
+            <a href="https://forms.gle/nPU6KsDggsqnVopt6" class="tracked-link" data-label="Form">
+              <img src="form_1.png" class="icon">
+            </a>
+          </span>
+        </p>
+      </section>
+    </div>
 
-  gtag('config', 'G-RZZ1R1HT10');
-</script>
-	  <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "r1gnewah6d");
-</script>
-    <script src="script.js"></script>
-    <!-- Loads <model-viewer> for browsers: -->
+    <!-- Load model-viewer -->
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.0.1/model-viewer.min.js"></script>
+    
+    <!-- Custom Analytics Script -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const modelViewer = document.getElementById('model-viewer');
+        const arButton = document.getElementById('ar-button');
+        const trackedLinks = document.querySelectorAll('.tracked-link');
+        
+        // Track page load time
+        const pageLoadTime = Date.now();
+        gtag('event', 'timing_complete', {
+          'name': 'page_load',
+          'value': performance.now(),
+          'event_category': 'Page Timing'
+        });
+        
+        // Track model load time
+        modelViewer.addEventListener('load', () => {
+          const modelLoadTime = Date.now() - pageLoadTime;
+          gtag('event', 'timing_complete', {
+            'name': 'model_load',
+            'value': modelLoadTime,
+            'event_category': 'Model Timing'
+          });
+          
+          // Initialize interaction tracking
+          setupModelInteractionTracking();
+        });
+        
+        // Track AR button clicks
+        arButton.addEventListener('click', () => {
+          gtag('event', 'ar_button_click', {
+            'event_category': 'User Interaction',
+            'event_label': 'AR Button Click'
+          });
+          
+          // Track AR session start when actually initiated
+          modelViewer.addEventListener('ar-status', (event) => {
+            if (event.detail.status === 'session-started') {
+              const arStartTime = Date.now();
+              
+              gtag('event', 'ar_session_start', {
+                'event_category': 'AR Experience',
+                'event_label': 'AR Session Started'
+              });
+              
+              // Track AR session duration
+              modelViewer.addEventListener('ar-status', (endEvent) => {
+                if (endEvent.detail.status === 'session-ended') {
+                  const arDuration = (Date.now() - arStartTime) / 1000;
+                  
+                  gtag('event', 'ar_session_end', {
+                    'event_category': 'AR Experience',
+                    'event_label': 'AR Session Ended',
+                    'value': arDuration
+                  });
+                }
+              });
+            }
+          });
+        });
+        
+        // Track external link clicks
+        trackedLinks.forEach(link => {
+          link.addEventListener('click', (e) => {
+            const label = e.currentTarget.getAttribute('data-label');
+            gtag('event', 'external_link_click', {
+              'event_category': 'Navigation',
+              'event_label': label
+            });
+          });
+        });
+        
+        // Track 3D view time
+        let viewStartTime;
+        let viewTimer;
+        
+        modelViewer.addEventListener('camera-change', () => {
+          if (!viewStartTime) {
+            viewStartTime = Date.now();
+            gtag('event', '3d_view_start', {
+              'event_category': '3D Experience',
+              'event_label': '3D View Started'
+            });
+          }
+          
+          // Reset timer on interaction
+          clearTimeout(viewTimer);
+          viewTimer = setTimeout(() => {
+            const viewDuration = (Date.now() - viewStartTime) / 1000;
+            gtag('event', '3d_view_duration', {
+              'event_category': '3D Experience',
+              'event_label': '3D View Duration',
+              'value': viewDuration
+            });
+            viewStartTime = null;
+          }, 1000);
+        });
+        
+        // Setup model interaction tracking
+        function setupModelInteractionTracking() {
+          let lastPosition = { x: 0, y: 0, z: 0 };
+          let lastScale = 1;
+          let lastRotation = { x: 0, y: 0, z: 0 };
+          let interactionCount = 0;
+          let lastInteractionTime = Date.now();
+          
+          // Track model manipulation (rotation, scale, position)
+          modelViewer.addEventListener('mousedown', startTracking);
+          modelViewer.addEventListener('touchstart', startTracking);
+          
+          function startTracking() {
+            lastPosition = modelViewer.getAttribute('position') || { x: 0, y: 0, z: 0 };
+            lastScale = modelViewer.getAttribute('scale') || 1;
+            lastRotation = modelViewer.getAttribute('rotation') || { x: 0, y: 0, z: 0 };
+            
+            modelViewer.addEventListener('mousemove', trackMovement);
+            modelViewer.addEventListener('touchmove', trackMovement);
+            modelViewer.addEventListener('mouseup', stopTracking);
+            modelViewer.addEventListener('touchend', stopTracking);
+          }
+          
+          function trackMovement() {
+            const currentTime = Date.now();
+            if (currentTime - lastInteractionTime > 100) { // Throttle events
+              const currentPosition = modelViewer.getAttribute('position') || lastPosition;
+              const currentScale = modelViewer.getAttribute('scale') || lastScale;
+              const currentRotation = modelViewer.getAttribute('rotation') || lastRotation;
+              
+              // Detect changes
+              if (JSON.stringify(currentPosition) !== JSON.stringify(lastPosition)) {
+                gtag('event', 'model_move', {
+                  'event_category': 'Model Interaction',
+                  'event_label': 'Model Position Changed'
+                });
+                lastPosition = currentPosition;
+              }
+              
+              if (currentScale !== lastScale) {
+                gtag('event', 'model_scale', {
+                  'event_category': 'Model Interaction',
+                  'event_label': 'Model Scale Changed',
+                  'value': currentScale
+                });
+                lastScale = currentScale;
+              }
+              
+              if (JSON.stringify(currentRotation) !== JSON.stringify(lastRotation)) {
+                gtag('event', 'model_rotate', {
+                  'event_category': 'Model Interaction',
+                  'event_label': 'Model Rotation Changed'
+                });
+                lastRotation = currentRotation;
+              }
+              
+              interactionCount++;
+              lastInteractionTime = currentTime;
+            }
+          }
+          
+          function stopTracking() {
+            modelViewer.removeEventListener('mousemove', trackMovement);
+            modelViewer.removeEventListener('touchmove', trackMovement);
+            
+            // Log total interactions in this session
+            if (interactionCount > 0) {
+              gtag('event', 'model_interactions', {
+                'event_category': 'Model Interaction',
+                'event_label': 'Total Interactions',
+                'value': interactionCount
+              });
+              interactionCount = 0;
+            }
+          }
+        }
+        
+        // Track surface detection in AR
+        if ('xr' in navigator) {
+          navigator.xr.addEventListener('devicechange', () => {
+            gtag('event', 'ar_device_change', {
+              'event_category': 'AR Capabilities',
+              'event_label': 'AR Device Status Changed'
+            });
+          });
+          
+          // Check surface detection capabilities
+          navigator.xr.isSessionSupported('immersive-ar').then((supported) => {
+            gtag('event', 'ar_support_check', {
+              'event_category': 'AR Capabilities',
+              'event_label': 'AR Support Check',
+              'value': supported ? 1 : 0
+            });
+          });
+        }
+      });
+    </script>
   </body>
 </html>
